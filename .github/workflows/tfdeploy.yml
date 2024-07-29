@@ -39,6 +39,8 @@ jobs:
         
       - name: Terraform Init
         run: |
+          pwd
+          ls -al
           rm -rf .terraform*
           terraform init
 
