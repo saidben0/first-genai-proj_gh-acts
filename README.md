@@ -1,1 +1,1 @@
-# first-genai-proj_gh-acts
+# first-genai-proj
