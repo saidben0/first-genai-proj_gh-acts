@@ -17,6 +17,7 @@ jobs:
         
       - name: Change to the environment directory
         run: |
+          echo ${{ runner.name }}
           ls ${{ github.workspace }}
           cd dev-use1/
           ls -al
@@ -39,6 +40,7 @@ jobs:
         
       - name: Terraform Init
         run: |
+          echo ${{ runner.name }}
           pwd
           ls -al
           rm -rf .terraform*
