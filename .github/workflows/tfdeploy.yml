@@ -15,12 +15,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         
-      - name: Change to the environment directory
-        run: |
-          echo ${{ runner.name }}
-          ls ${{ github.workspace }}
-          cd dev-use1/
-          ls -al
       # - name: Set up Terraform
       #   uses: hashicorp/setup-terraform@v2
       #   with:
@@ -40,10 +34,7 @@ jobs:
         
       - name: Terraform Init
         run: |
-          echo ${{ runner.name }}
-          pwd
-          cd dev-use1/
-          ls -al
+          pwd && cd dev-use1/ && ls -al
           rm -rf .terraform*
           terraform init
 
@@ -51,11 +42,15 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Validate
-        run: terraform validate
+        run: |
+          pwd && cd dev-use1/ && ls -al
+          terraform validate
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -out=tfplan
+        run: |
+          pwd && cd dev-use1/ && ls -al
+          terraform plan -out=tfplan
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
