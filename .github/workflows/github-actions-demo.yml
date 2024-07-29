@@ -19,3 +19,28 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  terraform-init:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          ls ${{ github.workspace }}
+          cd dev-use1/
+          rm -rf .terraform*
+          terraform init
+  # terraform-validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: |
+  #         terraform fmt
+  #         terraform validate
+  # terraform-plan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: |
+  #         terraform plan -out tfplan
+  # # terraform-apply:
+  # #   runs-on: ubuntu-latest
+  # #   steps:
+  # #     - run: |
+  # #         terraform apply tfplan
+  
