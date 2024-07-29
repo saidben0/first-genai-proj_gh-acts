@@ -3,7 +3,7 @@ name: Terraform Deploy Reuse
 on:
   workflow_call:
     inputs:
-      job-name:
+      aws-env:
         required: true
         type: string
     # secrets:
@@ -11,7 +11,7 @@ on:
     #     required: true
 
 jobs:
-  dev-use1:
+  terraform:
     runs-on: ubuntu-latest
     environment: development
     
@@ -44,7 +44,7 @@ jobs:
         
       - name: Terraform Init
         run: |
-          cd ${{ github.job }}/
+          cd ${{ inputs.aws-env }}/
           rm -rf .terraform*
           terraform init
 
@@ -53,13 +53,13 @@ jobs:
 
       - name: Terraform Validate
         run: |
-          cd ${{ github.job }}/
+          cd ${{ inputs.aws-env }}/
           terraform validate
 
       - name: Terraform Plan
         id: plan
         run: |
-          cd ${{ github.job }}/
+          cd ${{ inputs.aws-env }}/
           terraform plan -out=tfplan
 
       - name: Terraform Apply (Run only on merged PR to main)
@@ -67,7 +67,7 @@ jobs:
         # if: github.event_name == 'pull_request' && github.base_ref == 'main'
         # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-          cd ${{ github.job }}/
+          cd ${{ inputs.aws-env }}/
           terraform apply -auto-approve tfplan
         # env:
         #   TF_VAR_secret_key: ${{ secrets.TF_VAR_SECRET_KEY }}  # Example of passing a secret variable
