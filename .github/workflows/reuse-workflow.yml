@@ -21,6 +21,10 @@ jobs:
         shell: bash
     
     steps:
+      - name: Print Workflow Inputs
+        run: |
+          echo ${{ inputs.aws-env }}
+      
       - name: Check out repository code
         uses: actions/checkout@v4
 
