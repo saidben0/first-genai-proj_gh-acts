@@ -35,8 +35,7 @@ jobs:
       - name: Terraform Init
         run: |
           echo "${{ github.job }}"
-          echo ${{ github.job }}
-          pwd && cd dev-use1/ && ls -al
+          cd "${{ github.job }}/"
           rm -rf .terraform*
           terraform init
 
@@ -45,18 +44,20 @@ jobs:
 
       - name: Terraform Validate
         run: |
-          pwd && cd dev-use1/ && ls -al
+          cd "${{ github.job }}/"
           terraform validate
 
       - name: Terraform Plan
         id: plan
         run: |
-          pwd && cd dev-use1/ && ls -al
+          cd "${{ github.job }}/"
           terraform plan -out=tfplan
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve tfplan
+        run: |
+          cd "${{ github.job }}/"
+          terraform apply -auto-approve tfplan
         # env:
         #   TF_VAR_secret_key: ${{ secrets.TF_VAR_SECRET_KEY }}  # Example of passing a secret variable
 
