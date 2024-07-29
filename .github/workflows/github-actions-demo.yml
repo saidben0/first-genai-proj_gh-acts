@@ -25,10 +25,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: |
-          ls ${{ github.workspace }}
-          cd dev-use1/
-          rm -rf .terraform*
-          terraform init
+          terraform -version
+          # ls ${{ github.workspace }}
+          # cd dev-use1/
+          # rm -rf .terraform*
+          # terraform init
   # terraform-validate:
   #   runs-on: ubuntu-latest
   #   steps:
