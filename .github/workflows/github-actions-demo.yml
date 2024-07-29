@@ -26,8 +26,9 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           terraform -version
-          # ls ${{ github.workspace }}
-          # cd dev-use1/
+          ls ${{ github.workspace }}
+          cd dev-use1/
+          ls -al
           # rm -rf .terraform*
           # terraform init
   # terraform-validate:
