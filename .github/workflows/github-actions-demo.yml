@@ -29,7 +29,7 @@ jobs:
           ls ${{ github.workspace }}
           cd dev-use1/
           ls -al
-          # rm -rf .terraform*
+          rm -rf .terraform*
           # terraform init
   # terraform-validate:
   #   runs-on: ubuntu-latest
