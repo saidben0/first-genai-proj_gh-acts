@@ -1,0 +1,16 @@
+name: Terraform Deploy CONSUMER
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  dev-use1:
+    uses: ./.github/workflows/reuse-workflow.yml
+    # uses: saidben0/first-genai-proj_gh-acts/.github/workflows@main
+    with:
+      aws-env: dev-use1
