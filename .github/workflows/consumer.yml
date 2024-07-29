@@ -10,7 +10,7 @@ on:
 
 jobs:
   dev-use1:
-    uses: ./.github/workflows/reuse-workflow.yml
-    # uses: saidben0/first-genai-proj_gh-acts/.github/workflows@main
+    # uses: ./.github/workflows/reuse-workflow.yml
+    uses: saidben0/first-genai-proj_gh-acts/.github/workflows@main
     with:
       aws-env: dev-use1
