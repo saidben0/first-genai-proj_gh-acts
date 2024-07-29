@@ -39,7 +39,7 @@ jobs:
         
       - name: Terraform Init
         run: |
-          m -rf .terraform*
+          rm -rf .terraform*
           terraform init
 
       - name: Terraform Format
