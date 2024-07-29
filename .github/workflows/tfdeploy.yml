@@ -9,7 +9,7 @@ on:
       - dev
 
 jobs:
-  terraform:
+  dev-use1:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -35,6 +35,7 @@ jobs:
       - name: Terraform Init
         run: |
           echo "${{ github.job }}"
+          echo ${{ github.job }}
           pwd && cd dev-use1/ && ls -al
           rm -rf .terraform*
           terraform init
