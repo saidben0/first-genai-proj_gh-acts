@@ -52,8 +52,10 @@ jobs:
           cd ${{ github.job }}/
           terraform plan -out=tfplan
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      - name: Terraform Apply (Run only on merged PR to main)
+        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+        # if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           cd ${{ github.job }}/
           terraform apply -auto-approve tfplan
