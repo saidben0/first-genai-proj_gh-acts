@@ -10,6 +10,6 @@ on:
 
 jobs:
   dev-use1:
-    uses: ./.github/workflows/templates/tf-common.yml
+    uses: ./.github/workflows/tf-common.yml
     with:
       aws-env: dev-use1
